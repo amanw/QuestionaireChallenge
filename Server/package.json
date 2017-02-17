@@ -1,0 +1,31 @@
+{
+  "name": "Server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm-run-all --parallel open:src lint:watch",
+    "open:src": "nodemon src/app.js",
+    "lint": "node_modules/.bin/esw src/*",
+    "lint:watch": "npm run lint -- --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "fast-csv": "^2.3.1",
+    "gulp": "^3.9.1",
+    "mongoose": "^4.8.3"
+  },
+  "devDependencies": {
+    "eslint": "2.9.0",
+    "eslint-plugin-import": "1.6.1",
+    "eslint-plugin-react": "5.0.1",
+    "eslint-watch": "2.1.11",
+    "nock": "8.0.0",
+    "npm-run-all": "1.8.0",
+    "open": "0.0.5"
+  }
+}
