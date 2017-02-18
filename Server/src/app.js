@@ -24,13 +24,12 @@ app.get('/', function (req, res) {
 
 var server = app.listen(port, function () {
     Question.find(function(err, questions){
-        console.log(questions.length);
         if(err){
             console.log('Db Error Initializing ', err);
         } else if(questions && questions.length < 10){
             readCsv(Question);
         }
     });
-    console.log('server is up in running at http://localhost:' + server.address().port + '/notes');
+    console.log('server is up in running at \n http://localhost:' + server.address().port + '/questions');
 
 })

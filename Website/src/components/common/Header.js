@@ -2,7 +2,6 @@ import React from 'react';
 import {Link, IndexLink} from 'react-router';
 import Loadable  from 'react-loading-animation';
 const Header = ({loading, noOfQuestions}) => {
-  console.log(noOfQuestions);
   return (
     <div id="header">
       <div id="nav">
@@ -22,7 +21,7 @@ const Header = ({loading, noOfQuestions}) => {
 
 Header.propTypes ={
   loading: React.PropTypes.bool,
-  noOfQuestions: React.PropTypes.string
+  noOfQuestions: React.PropTypes.number
 };
 
 export  default Header;

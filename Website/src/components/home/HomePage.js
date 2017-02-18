@@ -53,7 +53,8 @@ class QuestionsPage extends React.Component {
                   className="btn btn-primary"
                   onClick={this.redirectToAddQuestionPage}/>
               </div>
-              <QuestionList questions={questions} onDelete={this.deleteQuestion}/>
+              {questions.length > 0 && <QuestionList questions={questions} onDelete={this.deleteQuestion}/>}
+              {questions.length === 0 && <p>No Questions found</p>}
             </div>
           </div>
         );

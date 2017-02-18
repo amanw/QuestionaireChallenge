@@ -29,7 +29,8 @@ class QuestionApi {
           .send(data)
           .end(function (err, res) {
             if (err) {
-              reject(err);
+              if(res.status == 400 && res.text){}
+              reject(res.text);
             } else {
               resolve(res.body);
             }
@@ -40,7 +41,8 @@ class QuestionApi {
           .send(data)
           .end(function (err, res) {
             if (err) {
-              reject(err);
+              if(res.status == 400 && res.text){}
+              reject(res.text);
             } else {
               resolve(res.body);
             }
