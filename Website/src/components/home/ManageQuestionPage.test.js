@@ -10,10 +10,10 @@ describe('Test Question Page', () => {
       data: {question: '', answer: '', distractors: ''}
     }
     const wrapper = mount(<ManageQuestionPage {...props}/>);
-    const saveBtn = wrapper.find('input').last();
+    const saveBtn = wrapper.find('.btn-primary').last();
     expect(saveBtn.prop('type')).toBe('submit');
     saveBtn.simulate('click');
-    expect(wrapper.state().errors.question).toBe('Question must be 5 characters');
+    expect(wrapper.state().errors.question).toBe('Question cannot be empty.');
   });
   it('sets error message when trying to save with question without \'?\'', ()=> {
     const props = {
@@ -21,7 +21,7 @@ describe('Test Question Page', () => {
       data: {question: 'What', answer: '', distractors: ''}
     }
     const wrapper = mount(<ManageQuestionPage {...props}/>);
-    const saveBtn = wrapper.find('input').last();
+    const saveBtn = wrapper.find('.btn-primary').last();
     expect(saveBtn.prop('type')).toBe('submit');
     saveBtn.simulate('click');
     expect(wrapper.state().errors.question).toBe('Question should be ending with \'?\'');
@@ -32,7 +32,7 @@ describe('Test Question Page', () => {
       data: {question: 'What?', answer: '', distractors: ''}
     }
     const wrapper = mount(<ManageQuestionPage {...props}/>);
-    const saveBtn = wrapper.find('input').last();
+    const saveBtn = wrapper.find('.btn-primary').last();
     expect(saveBtn.prop('type')).toBe('submit');
     saveBtn.simulate('click');
     expect(wrapper.state().errors.answer).toBe('Answer cannot be empty');

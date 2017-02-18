@@ -33,7 +33,7 @@ const QuestionForm = ({data, onSave, onChange, saving, errors, onCancel}) =>{
       <input
         type="submit"
         value={'Cancel'}
-        className="btn btn-primary btn-danger"
+        className="btn btn-danger"
         onClick={onCancel}/>
     </form>
   );

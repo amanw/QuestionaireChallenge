@@ -3,7 +3,9 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     readCsv = require('./tools/processExcelData');
 
-var db = mongoose.connect('mongodb://localhost:27017/questions');
+const host = '27017';
+
+var db = mongoose.connect('mongodb://localhost:'+ host + '/questions');
 var Question = require('./models/questionModel');
 var app = express();
 

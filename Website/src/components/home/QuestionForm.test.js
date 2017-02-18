@@ -20,15 +20,18 @@ describe('Test Question Form', () => {
     expect(wrapper.find('form').length).toBe(1);
     expect(wrapper.find('h1').length).toBe(1);
     expect(wrapper.find('h1').text()).toBe('Manage Question');
+    expect(wrapper.find('.btn-primary') !== null).toBe(true);
   });
 
   it('save button is labelled save when not saving', ()=> {
     const wrapper = setUp(false);
-    expect(wrapper.find('input').props().value).toBe('Save');
+    expect(wrapper.find('.btn-primary').props().value).toBe('Save');
   });
 
   it('save button is labelled Saving... when saving', ()=> {
     const wrapper = setUp(true);
-    expect(wrapper.find('input').props().value).toBe('Saving...');
+    expect(wrapper.find('.btn-primary').props().value).toBe('Saving...');
   });
+
+
 });

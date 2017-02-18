@@ -40,24 +40,20 @@ export class ManageQuestionPage extends React.Component {
     let errors = {};
     let formIsValid = true;
     const data= this.state.data;
-    if(data.question.length == 0 || data.question.length < 5) {
-      errors.question = "Question must be 5 characters";
+    if(data.question.length == 0) {
+      errors.question = "Question cannot be empty.";
       formIsValid = false;
-    }
-    if(!isQuestion.test(data.question)) {
+    } else if(!isQuestion.test(data.question)) {
       errors.question = "Question should be ending with '?'";
       formIsValid = false;
-    }
-    if(!hasMath.test(data.question)) {
+    } else if(!hasMath.test(data.question)) {
       errors.answer = "Question should contain numeric mathematical expression?";
       formIsValid = false;
     }
     if(data.answer.length == 0 ) {
       errors.answer = "Answer cannot be empty";
       formIsValid = false;
-    }
-    console.log(isNotValidAnswer.exec(data.answer));
-    if(isNotValidAnswer.test(data.answer)) {
+    } else if(isNotValidAnswer.test(data.answer)) {
       errors.answer = "Answer should be a numeric only";
       formIsValid = false;
     }
