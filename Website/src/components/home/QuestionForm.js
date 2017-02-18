@@ -1,7 +1,7 @@
 import React from 'react';
 import TextInput from '../common/TextInput';
 
-const QuestionForm = ({data, onSave, onChange, saving, errors}) =>{
+const QuestionForm = ({data, onSave, onChange, saving, errors, onCancel}) =>{
   return(
     <form>
       <h1>Manage Question</h1>
@@ -29,6 +29,12 @@ const QuestionForm = ({data, onSave, onChange, saving, errors}) =>{
         value={saving ? 'Saving...' : 'Save'}
         className="btn btn-primary"
         onClick={onSave}/>
+      {"   "}
+      <input
+        type="submit"
+        value={'Cancel'}
+        className="btn btn-primary btn-danger"
+        onClick={onCancel}/>
     </form>
   );
 };
@@ -37,6 +43,7 @@ const QuestionForm = ({data, onSave, onChange, saving, errors}) =>{
 QuestionForm.propTypes = {
   data: React.PropTypes.object.isRequired,
   onSave: React.PropTypes.func.isRequired,
+  onCancel: React.PropTypes.func.isRequired,
   onChange: React.PropTypes.func.isRequired,
   saving: React.PropTypes.bool,
   errors: React.PropTypes.object

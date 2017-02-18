@@ -13,9 +13,6 @@ const Header = ({loading, noOfQuestions}) => {
           <li>
             <IndexLink to="/questions" activeClassName="active">Questions ({noOfQuestions})</IndexLink>
           </li>
-          <li className="last">
-            <IndexLink to="/about" activeClassName="active">About</IndexLink>
-          </li>
         </ul>
       </div>
       {loading && <div id="loading"><Loadable/></div>}

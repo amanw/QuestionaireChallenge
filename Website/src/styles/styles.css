@@ -18,6 +18,9 @@ a:hover {
   padding: 0;
 }
 
+.wrapAdd {
+  padding-bottom: 30px;
+}
 
 #header {
   position: relative;

@@ -4,6 +4,7 @@ import  {bindActionCreators} from 'redux';
 import * as questionsActions from '../../actions/questionsActions';
 import QuestionForm from './QuestionForm';
 import toastr from 'toastr';
+import  math from 'mathjs';
 
 export class ManageQuestionPage extends React.Component {
   constructor(props, context) {
@@ -13,10 +14,10 @@ export class ManageQuestionPage extends React.Component {
       errors: {},
       saving: false
     };
-    console.log(this.props.data);
     this.updateQuestionState = this.updateQuestionState.bind(this);
     this.saveQuestion = this.saveQuestion.bind(this);
     this.redirect = this.redirect.bind(this);
+    this.onCancel = this.onCancel.bind(this);
   }
 
   componentWillReceiveProps(nextProps){
@@ -33,18 +34,31 @@ export class ManageQuestionPage extends React.Component {
   }
 
   questionFormIsValid() {
-    let formIsValid = true;
+    const isQuestion = new RegExp("(\\?)$");
+    const hasMath = new RegExp("(\\d+)");
+    const isNotValidAnswer = new RegExp("([aA-zZ]+)");
     let errors = {};
-    if(this.state.data.question.length == 0 || this.state.data.question.length < 5) {
+    let formIsValid = true;
+    const data= this.state.data;
+    if(data.question.length == 0 || data.question.length < 5) {
       errors.question = "Question must be 5 characters";
       formIsValid = false;
     }
-    if(this.state.data.question && this.state.data.question[this.state.data.question.length - 1] !== '?') {
+    if(!isQuestion.test(data.question)) {
       errors.question = "Question should be ending with '?'";
       formIsValid = false;
     }
-    if(this.state.data.answer.length == 0 ) {
+    if(!hasMath.test(data.question)) {
+      errors.answer = "Question should contain numeric mathematical expression?";
+      formIsValid = false;
+    }
+    if(data.answer.length == 0 ) {
       errors.answer = "Answer cannot be empty";
+      formIsValid = false;
+    }
+    console.log(isNotValidAnswer.exec(data.answer));
+    if(isNotValidAnswer.test(data.answer)) {
+      errors.answer = "Answer should be a numeric only";
       formIsValid = false;
     }
     this.setState({errors:errors});
@@ -71,6 +85,10 @@ export class ManageQuestionPage extends React.Component {
     toastr.success('Question Saved');
     this.context.router.push('/questions');
   }
+
+  onCancel() {
+    this.context.router.push('/questions');
+  }
   render() {
     return (
       <QuestionForm
@@ -78,7 +96,8 @@ export class ManageQuestionPage extends React.Component {
         errors = {this.state.errors}
         onChange={this.updateQuestionState}
         onSave={this.saveQuestion}
-        saving={this.state.saving}/>
+        saving={this.state.saving}
+        onCancel={this.onCancel}/>
     );
   }
 }

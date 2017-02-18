@@ -6,6 +6,7 @@ import 'react-table/react-table.css';
 import QuestionList from './QuestionList';
 import {browserHistory} from 'react-router';
 import toastr from 'toastr';
+import TextInput from '../common/TextInput';
 
 class QuestionsPage extends React.Component {
   constructor(props, context){
@@ -13,6 +14,7 @@ class QuestionsPage extends React.Component {
     this.redirectToAddQuestionPage = this.redirectToAddQuestionPage.bind(this);
     this.deleteQuestion = this.deleteQuestion.bind(this);
     this.redirect = this.redirect.bind(this);
+    this.updateSearch = this.updateSearch.bind(this);
   }
 
   deleteQuestion(evt) {
@@ -34,17 +36,23 @@ class QuestionsPage extends React.Component {
     browserHistory.push('/question');
   }
 
+  updateSearch(){
+
+  }
+
   render () {
       const {questions} = this.props;
         return (
           <div id="main">
             <div id="content">
-                <h1>List of Questions</h1>
-              <input
-                type="submit"
-                value="Add Question"
-                className="btn btn-primary"
-                onClick={this.redirectToAddQuestionPage}/>
+              <h1>List of Questions</h1>
+              <div className="wrapAdd">
+                <input
+                  type="submit"
+                  value="Add Question"
+                  className="btn btn-primary"
+                  onClick={this.redirectToAddQuestionPage}/>
+              </div>
               <QuestionList questions={questions} onDelete={this.deleteQuestion}/>
             </div>
           </div>

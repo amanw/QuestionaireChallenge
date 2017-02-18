@@ -8,7 +8,6 @@ const QuestionList = ({questions, onDelete}) => {
     accessor: 'question', // String-based value accessors !
     className: 'tableLink',
     render: row => {
-      console.log(row.row);
       return <Link to={'/question/' + row.row._id}>{row.row.question}</Link>;
     }
   },{

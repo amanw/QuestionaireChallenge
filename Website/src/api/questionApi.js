@@ -2,17 +2,15 @@ import request from 'superagent';
 
 const requestApi = 'http://localhost:3001/api/questions/';
 
-function replaceAll(str, find, replace) {
-  return str.replace(new RegExp(find, 'g'), replace);
-}
+const doo= () => {};
 
 class QuestionApi {
   static getAllQuestions() {
-    return new Promise((resolve, reject) => {
+    return new Promise( (resolve, reject) => {
       request
         .get(requestApi)
-        .end(function(err, res){
-          if(err) {
+        .end(function (err, res) {
+          if (err) {
             reject(err);
           } else {
             resolve(res.body);

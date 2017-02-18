@@ -13,7 +13,6 @@ var routes = function (data) {
                 var requestBody = JSON.parse(Buffer.concat(body).toString());
                 if(requestBody) {
                     var questionModel = new data(requestBody);
-                    console.log(questionModel);
                     questionModel.save();
                     res.status(201).send(questionModel);
                 } else
